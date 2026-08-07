@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400" role="img" aria-labelledby="t3 d3">
+  <title id="t3">Static recruiter demo boundary</title>
+  <desc id="d3">A deterministic synthetic snapshot is checked into the repository and verified for drift. A data-source adapter feeds it to the same React components used by the connected dashboard, producing a read-only browser experience with no gateway, database, credentials, or outbound network request.</desc>
+  <style>
+    .bg   { fill: #16161a; }
+    .card { fill: #1f1f26; stroke: #35353f; stroke-width: 1.25; }
+    .accent { fill: #221d38; stroke: #7c5cf0; stroke-width: 1.5; }
+    .h    { fill: #f2f1ee; font-size: 15px; font-weight: 600; }
+    .s    { fill: #a2a2ae; font-size: 12.5px; }
+    .cap  { fill: #8b8b98; font-size: 11.5px; letter-spacing: .12em; font-weight: 600; }
+    .no   { fill: #e0a3ad; font-size: 12.5px; }
+    .ln   { stroke: #5a5a68; stroke-width: 1.6; fill: none; }
+    .cut  { stroke: #6b4a52; stroke-width: 1.6; stroke-dasharray: 6 5; fill: none; }
+    text  { font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  </style>
+  <defs>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a5a68"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="900" height="400" rx="10"/>
+  <text class="cap" x="34" y="34">STATIC RECRUITER DEMO — SYNTHETIC AND READ ONLY</text>
+
+  <rect class="card" x="34" y="56" width="238" height="96" rx="8"/>
+  <text class="h" x="52" y="86">Synthetic snapshot</text>
+  <text class="s" x="52" y="108">Deterministic, checked in,</text>
+  <text class="s" x="52" y="126">regenerated and drift-tested</text>
+
+  <rect class="card" x="330" y="56" width="238" height="96" rx="8"/>
+  <text class="h" x="348" y="86">Data-source adapter</text>
+  <text class="s" x="348" y="108">Only layer that changes</text>
+  <text class="s" x="348" y="126">between connected and static</text>
+
+  <rect class="accent" x="626" y="56" width="240" height="96" rx="8"/>
+  <text class="h" x="644" y="86">Same React components</text>
+  <text class="s" x="644" y="108">Identical views and API shapes</text>
+  <text class="s" x="644" y="126">as the connected dashboard</text>
+
+  <path class="ln" d="M272 104 L324 104" marker-end="url(#a3)"/>
+  <path class="ln" d="M568 104 L620 104" marker-end="url(#a3)"/>
+  <path class="ln" d="M746 152 L746 196" marker-end="url(#a3)"/>
+
+  <rect class="card" x="34" y="206" width="832" height="86" rx="8"/>
+  <text class="h" x="52" y="238">Read-only browser experience</text>
+  <text class="s" x="52" y="262">Hash routes survive direct refresh · every screen carries a synthetic read-only banner · mutations and exports are absent or disabled</text>
+
+  <text class="cap" x="34" y="326">ABSENT BY CONSTRUCTION</text>
+  <path class="cut" d="M34 336 L866 336"/>
+  <text class="no" x="34" y="360">No gateway  ·  no database  ·  no credentials  ·  no provider call  ·  no analytics  ·  no browser-storage writes  ·  no outbound network request</text>
+  <text class="s" x="34" y="384">The demo shows how the interface presents evidence. It is not production usage, customer data, or proof of adoption.</text>
+</svg>

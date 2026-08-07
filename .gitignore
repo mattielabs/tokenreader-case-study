@@ -1,0 +1,38 @@
+# This is a documentation-only repository. Nothing is built here.
+# These entries exist to keep incidental local files out of a public repository.
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*~
+
+# Never publish local runtime data, credentials, or exports here
+.env
+.env.*
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+*.key
+*.log
+exports/
+captured-content/
+.tokenops-local/
+.tokenops-data/
+
+# Never publish dependency or build output here
+node_modules/
+dist/
+dist-demo/
+__pycache__/
+.venv/
+
+# Scratch
+tmp/
+*.tmp
+*.bak

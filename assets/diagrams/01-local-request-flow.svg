@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" width="900" height="430" role="img" aria-labelledby="t1 d1">
+  <title id="t1">TokenOps local request flow</title>
+  <desc id="d1">An application using an official provider SDK sends a native request to the local TokenOps gateway. The gateway forwards it unchanged to a deterministic fixture upstream, which returns native JSON or SSE. Separately, the gateway derives allowlisted metadata, normalizes provider usage, estimates cost from an exact dated schedule, commits to local SQLite, and serves a typed API to the dashboard.</desc>
+  <style>
+    .bg   { fill: #16161a; }
+    .card { fill: #1f1f26; stroke: #35353f; stroke-width: 1.25; }
+    .accent { fill: #221d38; stroke: #7c5cf0; stroke-width: 1.5; }
+    .h    { fill: #f2f1ee; font-size: 15px; font-weight: 600; }
+    .s    { fill: #a2a2ae; font-size: 12.5px; }
+    .lbl  { fill: #c6bdf5; font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+    .cap  { fill: #8b8b98; font-size: 11.5px; letter-spacing: .12em; font-weight: 600; }
+    .ln   { stroke: #5a5a68; stroke-width: 1.6; fill: none; }
+    .lnp  { stroke: #7c5cf0; stroke-width: 1.6; fill: none; }
+    text  { font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a5a68"/>
+    </marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7c5cf0"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="900" height="430" rx="10"/>
+  <text class="cap" x="34" y="34">REQUEST PATH — UNCHANGED NATIVE PROTOCOL</text>
+
+  <rect class="card" x="34" y="52" width="196" height="72" rx="8"/>
+  <text class="h" x="52" y="80">Application</text>
+  <text class="s" x="52" y="102">Official OpenAI / Anthropic SDK</text>
+
+  <rect class="accent" x="300" y="52" width="196" height="72" rx="8"/>
+  <text class="h" x="318" y="80">TokenOps gateway</text>
+  <text class="s" x="318" y="102">Loopback bind · zero retries</text>
+
+  <rect class="card" x="566" y="52" width="300" height="72" rx="8"/>
+  <text class="h" x="584" y="80">Deterministic fixture upstream</text>
+  <text class="s" x="584" y="102">Recorded provider JSON / SSE · no paid call</text>
+
+  <path class="ln" d="M230 78 L294 78" marker-end="url(#a)"/>
+  <path class="ln" d="M496 78 L560 78" marker-end="url(#a)"/>
+  <path class="ln" d="M566 106 L530 106 L530 140 L266 140 L266 106 L294 106" marker-end="url(#a)"/>
+  <text class="s" x="356" y="158">native response streamed back unmodified</text>
+
+  <text class="cap" x="34" y="212">EVIDENCE PATH — ALLOWLISTED METADATA ONLY</text>
+
+  <path class="lnp" d="M398 124 L398 182 L108 182 L108 226" marker-end="url(#ap)"/>
+  <text class="lbl" x="416" y="178">derived metadata · no bodies retained</text>
+
+  <rect class="card" x="34" y="232" width="148" height="80" rx="8"/>
+  <text class="h" x="48" y="262">Normalize</text>
+  <text class="s" x="48" y="282">Provider-specific</text>
+  <text class="s" x="48" y="299">token categories</text>
+
+  <rect class="card" x="204" y="232" width="148" height="80" rx="8"/>
+  <text class="h" x="218" y="262">Estimate cost</text>
+  <text class="s" x="218" y="282">Exact dated</text>
+  <text class="s" x="218" y="299">schedule · micro-USD</text>
+
+  <rect class="card" x="374" y="232" width="148" height="80" rx="8"/>
+  <text class="h" x="388" y="262">Local SQLite</text>
+  <text class="s" x="388" y="282">Metadata only</text>
+  <text class="s" x="388" y="299">transactional commit</text>
+
+  <rect class="card" x="544" y="232" width="148" height="80" rx="8"/>
+  <text class="h" x="558" y="262">Typed API</text>
+  <text class="s" x="558" y="282">Generated contract</text>
+  <text class="s" x="558" y="299">drift-checked</text>
+
+  <rect class="accent" x="714" y="232" width="152" height="80" rx="8"/>
+  <text class="h" x="728" y="262">Dashboard</text>
+  <text class="s" x="728" y="282">Evidence views,</text>
+  <text class="s" x="728" y="299">advisory only</text>
+
+  <path class="ln" d="M182 272 L198 272" marker-end="url(#a)"/>
+  <path class="ln" d="M352 272 L368 272" marker-end="url(#a)"/>
+  <path class="ln" d="M522 272 L538 272" marker-end="url(#a)"/>
+  <path class="ln" d="M692 272 L708 272" marker-end="url(#a)"/>
+
+  <text class="s" x="34" y="360">Prompt and response bodies pass through in memory and are never written to the database, logs, exports, or the browser.</text>
+  <text class="s" x="34" y="382">Optional live-provider mode is off by default and was never executed; every figure in this case study is fixture-backed.</text>
+  <text class="s" x="34" y="404">Costs are estimates derived from published rates. They are not provider invoices.</text>
+</svg>
