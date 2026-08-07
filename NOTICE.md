@@ -16,7 +16,7 @@ without the source being published.
   API contracts, or build output are included here.
 - It is **not** distributable software. Nothing here can be built, installed, or deployed, and no
   instructions for doing so are provided.
-- It is **not** an open-source release. See [COPYRIGHT.md](COPYRIGHT.md).
+- It is **not** an open-source release. See the [rights notice](RIGHTS.md).
 
 ## Data shown here is synthetic
 

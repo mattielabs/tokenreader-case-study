@@ -14,6 +14,10 @@ ever storing prompt or response content.
 > Everything below describes a **local MVP validated against deterministic fixtures**. No real
 > provider request was ever made, no production deployment exists, and there are no users, customers,
 > or revenue outcomes to report.
+>
+> **This repository is not open source.** No permission is granted to reuse, modify, redistribute,
+> host, or deploy Mattie Labs' original materials. See the [rights notice](RIGHTS.md);
+> [NOTICE.md](NOTICE.md) is the primary detailed notice.
 
 ![TokenOps Overview: estimated spend, token composition, cost by exact model, request coverage, and priority findings, all labelled synthetic](assets/screenshots/demo-overview.jpg)
 
@@ -236,7 +240,8 @@ Details: [AI-assisted development](docs/09-ai-assisted-development.md).
 | Live provider evaluation | Not run |
 | Release or tag | None |
 
-See [NOTICE.md](NOTICE.md) and [COPYRIGHT.md](COPYRIGHT.md).
+[NOTICE.md](NOTICE.md) is the primary detailed notice. See also the
+[rights notice](RIGHTS.md).
 
 ## Contact
 
