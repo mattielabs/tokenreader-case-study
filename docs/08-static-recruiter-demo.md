@@ -50,6 +50,12 @@ provider call, and no automatic external request.
   rule.
 - Loaded assets stay local; the bundle is scanned to confirm no external request.
 
+The shared presentation uses the redesigned light evidence system in both modes: the same 64px
+desktop rail, mobile bottom navigation, explicit unavailable/not-wired states, semantic tables, and
+dependency-free SVG evidence charts. The static header visibly says `SYNTHETIC RECRUITER DEMO · READ
+ONLY` on every route. Screenshot values come from the checked snapshot rather than the design
+reference, and mutation controls remain absent or disabled.
+
 ## Verification
 
 The snapshot generator has a `--check` mode that detects drift, and a separate scan verifies mode

@@ -80,13 +80,16 @@ the evidence cannot support.
 | Privacy | What is actually implemented, what are the limits, and how do I reset or export? |
 
 Missing values are labelled rather than plotted as zero. Fixture-sourced evidence is labelled as
-synthetic on every screen. The visual system is deliberately dense and restrained: it should read as
-an engineering instrument, not a marketing surface.
+synthetic on every screen. The redesigned visual system uses an off-white evidence workspace, a
+compact 64px rail, strong numeric hierarchy, and restrained purple, magenta, teal, amber, and red
+state colours. Instrument Sans carries prose while IBM Plex Mono distinguishes traceable evidence.
+At small widths the rail becomes bottom navigation and evidence groups collapse without hiding
+essential actions. It should read as an engineering instrument, not a marketing surface.
 
 ## Status
 
 Week 4 local MVP, verdict **PASS** under the local metadata-only workflow, recorded against source
-commit `5b76e5e82db1c98ede93859be5f69d5bccb0def0`. Public release of the software is blocked pending
+commit `4e7aff9c1681a38fb86e1aa1d12905512741cff9`. Public release of the software is blocked pending
 a licence decision.
 
 ---

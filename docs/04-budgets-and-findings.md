@@ -63,7 +63,7 @@ A confirmed reset generates a new key, removes all HMAC rows and equality-derive
 leaves requests, usage, pricing, costs, projects, and budgets intact — so a privacy action does not
 also destroy the cost history the user came for.
 
-![Optimize view: findings, Prompt Trim, and the offline evaluation summary](../assets/screenshots/demo-evaluation.jpg)
+![Light Optimize view: deterministic Prompt Trim safety evidence followed by measured, threshold-linked findings](../assets/screenshots/demo-evaluation.jpg)
 
 ---
 

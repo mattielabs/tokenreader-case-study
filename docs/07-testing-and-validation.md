@@ -3,7 +3,7 @@
 [← Back to the case study](../README.md)
 
 All figures below were recorded against source commit
-`5b76e5e82db1c98ede93859be5f69d5bccb0def0`, on Windows, using Python 3.12 and Node.js 24.
+`4e7aff9c1681a38fb86e1aa1d12905512741cff9`, on Windows, using Python 3.12 and Node.js 24.
 
 ## The repository gate
 
@@ -16,7 +16,7 @@ strict TypeScript checking, the frontend test suite, and both production builds.
 | Check | Result |
 |---|---|
 | Backend tests | **121 passed** |
-| Frontend tests | **11 Vitest tests passed** |
+| Frontend tests | **15 Vitest tests passed** |
 | Strict mypy | passed across **37 source files** |
 | Ruff format and lint | passed |
 | Strict TypeScript | passed |
@@ -70,12 +70,14 @@ and the static preview were checked in a browser, with an empty console.
 
 ## Browser and responsive review
 
-Desktop (1440×1000) and mobile (375×812) layouts were reviewed with no horizontal overflow. Semantic
-navigation, labels, a skip link, status text that does not rely on colour alone, visible focus
-indicators, and reduced-motion behaviour were reviewed. Frontend tests cover loading, empty, error,
-budget, optimization, Prompt Trim, focus-management, and reset states.
+Desktop (1440×1000) and minimum-width mobile (320×800) layouts were reviewed. At 320px the final
+document scroll width equalled its usable client width, confirming there was no page-level horizontal
+overflow; wide charts and tables retain bounded local scroll containers. Semantic navigation,
+labels, a skip link, status text that does not rely on colour alone, visible focus indicators, and
+reduced-motion behaviour were reviewed. Frontend tests cover loading, empty, error, chart geometry,
+budget, optimization, Prompt Trim, selected filter state, focus management, and reset states.
 
-![The Optimize view at mobile width, showing the deterministic evaluation panel and bottom navigation](../assets/screenshots/demo-mobile.jpg)
+![The light Overview at 320px, showing stacked evidence cards and fixed bottom navigation without page-level horizontal overflow](../assets/screenshots/demo-mobile.jpg)
 
 This is **tested and reviewed behaviour, not an accessibility certification**. No formal WCAG
 conformance audit was performed, and no pixel-snapshot claim is made.
@@ -89,15 +91,24 @@ drift.
 This closes the failure mode where documentation and reality diverge silently — the evaluation
 numbers quoted in this case study cannot go stale without the build failing first.
 
+## Remote CI
+
+GitHub Actions run `31284853455` completed successfully in the private source repository against
+source commit `4e7aff9c1681a38fb86e1aa1d12905512741cff9`. The run is not publicly accessible. All four
+jobs passed: `backend`, `frontend`, `direct-runtime`, and `docker`. The direct-runtime job exercised
+the POSIX workflow on Linux. The Docker job parsed the Compose configuration and built the gateway
+and dashboard images; it did not start a container or composed stack.
+
 ## What validation does not establish
 
 - **It is fixture evidence, not production evidence.** No real provider request was made and no real
   key was read.
 - **It is not a security audit.** No third-party review or penetration test was performed.
 - **It is not an accessibility certification.**
-- **It is not remote CI.** GitHub Actions workflows exist in the private repository but have never
-  been executed against a remote.
-- **Docker was never run** and remains locally unverified.
+- **Passing CI is not production evidence.** It verifies the checked workflows against this source
+  commit, not a deployed or user-facing system.
+- **Docker remains locally unverified.** Images build in CI and Compose parses, but no container or
+  composed stack has been started or exercised anywhere.
 - **There is no production or real-user evidence** of any kind.
 - Test counts measure coverage of intended behaviour. They are not proof of correctness for inputs
   outside the fixture set.

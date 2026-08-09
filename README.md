@@ -19,10 +19,10 @@ ever storing prompt or response content.
 > host, or deploy Mattie Labs' original materials. See the [rights notice](RIGHTS.md);
 > [NOTICE.md](NOTICE.md) is the primary detailed notice.
 
-![TokenOps Overview: estimated spend, token composition, cost by exact model, request coverage, and priority findings, all labelled synthetic](assets/screenshots/demo-overview.jpg)
+![TokenOps light Overview: advisory-budget position, estimated spend, linear pace, token and exact-model allocation, top opportunity, and recent requests, all labelled synthetic](assets/screenshots/demo-overview.jpg)
 
-*Every screen in this case study renders synthetic fixture data. The `SYNTHETIC` label is part of the
-product, not part of the screenshot.*
+*Every screen in this case study renders synthetic fixture data. The `SYNTHETIC RECRUITER DEMO ·
+READ ONLY` label is part of the product, not part of the screenshot.*
 
 ---
 
@@ -66,6 +66,24 @@ blocked pending a licence decision.
 | Prompt Trim | A deterministic, conservative, opt-in, in-memory suggestion lab that protects structure it cannot prove is safe to touch |
 | Offline evaluation | A fixed 30-ticket synthetic corpus with deterministic rubrics and a content-free report |
 | Static recruiter demo | The same React views over a checked synthetic snapshot, with no backend, database, key, or network |
+
+## Interface design
+
+The redesigned dashboard uses a light, off-white evidence workspace rather than a conventional dark
+operations console. Instrument Sans carries hierarchy and prose; IBM Plex Mono distinguishes trace
+IDs, timestamps, compact labels, and numeric evidence. Purple is reserved for navigation and action,
+magenta for opportunities, teal for success, amber for warnings, and red for destructive states.
+
+A 64px evidence rail becomes bottom navigation at mobile width. Evidence groups collapse from three
+columns to two and then one, while tables and wide charts keep bounded local scrolling. The reviewed
+minimum viewport is 320px. Missing values appear as `UNAVAILABLE`, `NOT WIRED`, or a dedicated hatch
+rather than zero. Small charts are dependency-free SVGs with text labels or accessible names; they
+render management-API or checked-snapshot values, never numbers copied from a mockup.
+
+The interaction design follows the same evidence boundary: selected request shortcuts expose
+`aria-pressed`, Prompt Trim suggestions remain opt-in and do not echo prompt text into comparison
+panels, and fingerprint reset requires exact typed confirmation with focus trapping and restoration.
+This is tested and browser-reviewed behaviour, not an accessibility certification.
 
 ## Architecture overview
 
@@ -166,12 +184,12 @@ Details: [static recruiter demo](docs/08-static-recruiter-demo.md).
 
 ## Verification summary
 
-Recorded against source commit `5b76e5e82db1c98ede93859be5f69d5bccb0def0`:
+Recorded against source commit `4e7aff9c1681a38fb86e1aa1d12905512741cff9`:
 
 | Check | Result |
 |---|---|
 | Backend tests | 121 passed |
-| Frontend tests | 11 Vitest tests passed |
+| Frontend tests | 15 Vitest tests passed |
 | Type checking | Strict mypy across 37 source files; strict TypeScript |
 | Formatting and lint | Ruff format and lint passed |
 | Migrations | Upgrade, downgrade, and re-upgrade passed; head unchanged at `0003_week3_dashboard_optimization` |
@@ -179,6 +197,7 @@ Recorded against source commit `5b76e5e82db1c98ede93859be5f69d5bccb0def0`:
 | Builds | Connected and static-demo production builds passed |
 | SDK paths | Official OpenAI and Anthropic SDKs, regular and streaming, over real localhost HTTP |
 | Scans | Secret, evaluation-drift, snapshot-drift, screenshot, bundle, and generated-contract checks passed |
+| Remote CI | All four jobs passed: backend, frontend, direct-runtime, and Docker build/configuration |
 | Real provider requests | **None.** No real key was read; live evaluation was not run |
 
 Details: [testing and validation](docs/07-testing-and-validation.md).
@@ -195,8 +214,9 @@ Details: [testing and validation](docs/07-testing-and-validation.md).
 - Prompt Trim counts are approximate and offline; provider-network token counting is not implemented.
 - No accessibility or security certification is claimed. Accessibility work is tested and
   browser-reviewed behaviour, not an audited conformance claim.
-- Docker packaging was never run and remains locally unverified.
-- No deployment, hosted demo, or remote CI run has been verified.
+- Docker remains locally unverified. GitHub Actions parsed the Compose configuration and built both
+  images, but no container or composed stack has been started or exercised anywhere.
+- Remote CI passed; there is still no deployment or hosted demo.
 
 Details: [limitations and next steps](docs/10-limitations-and-next-steps.md).
 
@@ -236,7 +256,7 @@ Details: [AI-assisted development](docs/09-ai-assisted-development.md).
 | TokenOps application source | **Private and unpublished** |
 | Open-source licence | **Undecided.** No licence is granted by this repository |
 | Deployment / hosted demo | None |
-| Remote CI | Unverified |
+| Remote CI | **Verified passing** on source commit `4e7aff9c1681a38fb86e1aa1d12905512741cff9` |
 | Live provider evaluation | Not run |
 | Release or tag | None |
 

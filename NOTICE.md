@@ -60,8 +60,8 @@ pricing pages used as sources for dated rate schedules.
 
 ## No warranty
 
-This documentation is provided as-is, without warranty of any kind. It describes a local MVP that has
-no production deployment, no verified remote CI, no security or accessibility certification, and no
+This documentation is provided as-is, without warranty of any kind. It describes a local MVP with
+verified repository CI but no production deployment, security or accessibility certification, or
 real-user evidence.
 
 ## Contact

@@ -66,7 +66,7 @@ Cost status is one of `complete`, `partial`, `price_unavailable`, `usage_unavail
 
 ## The worked trace
 
-![Request detail: safe metadata, normalized usage, estimated-cost reconciliation, and exact schedule provenance](../assets/screenshots/demo-request-trace.jpg)
+![Light request detail view: a four-step reconciliation path followed by safe metadata, normalized usage, estimated-cost components, and exact schedule provenance](../assets/screenshots/demo-request-trace.jpg)
 
 The Overview reports **$0.014696** of complete estimated spend, from
 `complete_estimated_cost_micro_usd = 14696` in the checked snapshot. That figure covers 5 complete

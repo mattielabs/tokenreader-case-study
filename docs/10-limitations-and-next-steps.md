@@ -35,9 +35,10 @@ patched. They are listed together so a reviewer does not have to hunt for them.
   protection boundary.
 - **No security or accessibility certification** is claimed, and no third-party audit or penetration
   test was performed.
-- Docker packaging exists but was never run and remains locally unverified.
-- GitHub Actions workflows exist but have never been executed against a remote, so **remote CI is
-  unverified**.
+- Docker packaging remains locally unverified. GitHub Actions parses Compose and builds both images,
+  but no container or composed stack has been started or exercised anywhere.
+- Remote CI has passed all four retained jobs on the current documented source commit. That is build
+  and workflow evidence, not deployment or production evidence.
 - There is no deployment and no hosted demo.
 
 ## Publication status
@@ -54,9 +55,9 @@ patched. They are listed together so a reviewer does not have to hunt for them.
 ## What would come next
 
 **Before any public software release.** Select a licence — this is the gating decision and nothing
-else moves without it. Verify the retained CI workflows against a remote, since they have never
-actually executed. Verify Docker packaging or drop it rather than leaving an unverified path in the
-repository.
+else moves without it. Decide whether Docker should remain optional packaging; if it does, exercise
+the composed stack in a suitable local or controlled environment rather than treating successful CI
+image builds as runtime validation.
 
 **To move beyond fixture evidence.** Run the gated live evaluation once, deliberately and within its
 caps, to replace `unavailable` with a real quality-retention figure — accepting that the result may
