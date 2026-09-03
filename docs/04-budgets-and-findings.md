@@ -5,7 +5,7 @@
 ## Advisory budgets
 
 A project carries one positive monthly limit, stored in integer micro-USD. The active period is the
-half-open UTC calendar month — from the first day at 00:00 up to, but not including, the next first
+half-open UTC calendar month, from the first day at 00:00 up to, but not including, the next first
 day.
 
 Spend counts **only** cost estimates with status `complete`. Incomplete and unpriced requests are
@@ -16,9 +16,9 @@ States are: below 50%, warning at 50%, high warning at 80%, and reached or excee
 
 The important property is what a budget **cannot** do. It never blocks, delays, reroutes, retries, or
 modifies a provider request. Changing a limit does not recalculate historical costs. A budget is a
-number to look at, not a control in the request path — putting enforcement there would make TokenOps
-a new point of failure inside someone else's production system, for the sake of a guardrail the
-provider's own limits already offer.
+number to look at, not a control in the request path. Putting enforcement there would make
+TokenReader a new point of failure inside someone else's production system, for the sake of a
+guardrail the provider's own limits already offer.
 
 The demo snapshot exercises all three interesting states so the interface can be reviewed in each:
 one project at 80% (`warning_80`, $0.014696 of a $0.018370 limit, with 3 incomplete requests reported
@@ -50,8 +50,12 @@ recorded as `potential_reduction_not_calculated`.
 This is the single most tempting place in the product to invent a number. "You could save $X per
 month" is the sentence a cost tool is expected to produce, and it would have been easy to generate
 from a threshold crossing. It is not generated, because a measured 840-character repeated block is
-evidence that something is worth checking — not evidence that removing it would be safe, that the
+evidence that something is worth checking, not evidence that removing it would be safe, that the
 provider would cache it, or that any money would actually be saved.
+
+The Overview's weekly digest follows the same rule. It computes a week-over-week comparison only
+when the fetched window provably covers both weeks; otherwise it states that the comparison is
+unavailable.
 
 ### Fingerprints and reset
 
@@ -60,7 +64,7 @@ stored text. Disabling fingerprinting for a project stops new HMACs from being w
 equality rows remain until an explicit reset.
 
 A confirmed reset generates a new key, removes all HMAC rows and equality-derived findings, and
-leaves requests, usage, pricing, costs, projects, and budgets intact — so a privacy action does not
+leaves requests, usage, pricing, costs, projects, and budgets intact, so a privacy action does not
 also destroy the cost history the user came for.
 
 ![Light Optimize view: deterministic Prompt Trim safety evidence followed by measured, threshold-linked findings](../assets/screenshots/demo-evaluation.jpg)

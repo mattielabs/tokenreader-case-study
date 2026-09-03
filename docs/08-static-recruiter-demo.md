@@ -7,8 +7,8 @@
 ## The problem it solves
 
 A reviewer should be able to see the actual interface without installing anything, without a
-provider key, and without the project owner exposing production data — because there is no production
-data, and there never will be under the metadata-only boundary.
+provider key, and without the project owner exposing production data, because there is no production
+data and there never will be under the metadata-only boundary.
 
 The usual answers are bad. A recorded video cannot be explored. A separate marketing mockup drifts
 from the real product and quietly becomes a lie. A hosted live instance needs a backend, a database,
@@ -17,11 +17,13 @@ credentials, and a deployment the project has explicitly not authorised.
 ## The approach
 
 Generate a deterministic synthetic snapshot, check it into the repository, and feed it to the **same
-React components** the connected dashboard uses. Only the client data adapter changes.
+React components** the connected dashboard and the desktop shell use. Only the client transport
+changes: HTTP for browser development, the snapshot adapter for the demo, the preload bridge for the
+desktop.
 
 Because business calculations live in the backend and the frontend renders what it is given, the
 static build cannot accidentally implement its own version of the cost logic. What a reviewer sees is
-the real presentation layer over real API shapes — a genuine artifact rather than an approximation.
+the real presentation layer over real API shapes.
 
 ## What the snapshot contains
 
@@ -42,36 +44,36 @@ clean data has not demonstrated the hard part.
 The demo has no gateway, no database, no credentials, no analytics, no browser-storage writes, no
 provider call, and no automatic external request.
 
-- Every screen carries a synthetic read-only banner.
+- Every screen carries a `Synthetic recruiter demo · read only` chip in the top bar.
 - Budget, project, pricing, fingerprint, and comparison mutations are absent or disabled with
   explicit read-only text.
+- Licence and update surfaces state honestly that they are unavailable outside the desktop.
 - Exports are unavailable.
 - Routes use the URL fragment, so a direct refresh works on a basic static server without a rewrite
   rule.
-- Loaded assets stay local; the bundle is scanned to confirm no external request.
+- Loaded assets stay local, including the self-hosted fonts; the bundle is scanned to confirm no
+  external request.
 
-The shared presentation uses the redesigned light evidence system in both modes: the same 64px
-desktop rail, mobile bottom navigation, explicit unavailable/not-wired states, semantic tables, and
-dependency-free SVG evidence charts. The static header visibly says `SYNTHETIC RECRUITER DEMO · READ
-ONLY` on every route. Screenshot values come from the checked snapshot rather than the design
-reference, and mutation controls remain absent or disabled.
+Pricing provenance recorded in the snapshot is rendered as plain text in static mode rather than as
+navigation, so the read-only build has nothing to click out to.
 
 ## Verification
 
-The snapshot generator has a `--check` mode that detects drift, and a separate scan verifies mode
-flags, the 30-ticket evaluation state, uniqueness of the approved Prompt Trim example, paths and
-secrets, and the built bundle. A missing or stale snapshot fails the build workflow rather than
+The snapshot generator has a check mode that detects drift, and a separate scan verifies mode flags,
+the 30-ticket evaluation state, uniqueness of the approved Prompt Trim example, paths and secrets,
+the absence of browser-storage writes, and the built bundle. The active-branding gate scans the demo
+bundle as one of its built surfaces. A missing or stale snapshot fails the build rather than
 silently shipping old numbers.
 
 Build output is ignored by version control and is explicitly **not** publication evidence.
 
-## Where it is not
+## The screenshots in this repository
 
-The demo runs locally. **It is not deployed or hosted anywhere**, and this case study does not link
-to a live instance. The screenshots in this repository are the published artifact.
-
-Pricing provenance recorded in the snapshot is rendered as plain text in static mode rather than as
-navigation, so the read-only build has nothing to click out to.
+The five screenshots under `assets/screenshots/` were regenerated on 2026-09-03 from the static demo
+built at source commit `1f17420`, at 1440×900 for the desktop views and 503×1088 for the narrow
+view, with the colour scheme pinned to light for four of them and dark for one. They are the
+published artifact. The demo itself runs locally and **is not deployed or hosted anywhere**; this
+case study does not link to a live instance.
 
 ---
 

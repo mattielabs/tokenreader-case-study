@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" width="900" height="470" role="img" aria-labelledby="t2 d2">
-  <title id="t2">TokenOps metadata-only privacy boundary</title>
+  <title id="t2">TokenReader metadata-only privacy boundary</title>
   <desc id="d2">Above the boundary, request and response bodies, prompt text, credentials, and HMAC key material are processed in memory and discarded. Below the boundary, only allowlisted metadata is retained: trace identity, exact model, timing and outcome, normalized token counts, cost components, keyed equality fingerprints, and advisory findings.</desc>
   <style>
     .bg   { fill: #16161a; }

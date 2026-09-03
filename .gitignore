@@ -23,7 +23,9 @@ desktop.ini
 exports/
 captured-content/
 .tokenops-local/
+.tokenreader-local/
 .tokenops-data/
+.tokenreader-data/
 
 # Never publish dependency or build output here
 node_modules/

@@ -3,7 +3,7 @@
 [← Back to the case study](../README.md)
 
 The goal of this subsystem is narrow and testable: **any number on the Overview must be walkable back
-to a specific request, a specific token count, and a specific dated rate** — or else be reported as
+to a specific request, a specific token count, and a specific dated rate**, or else be reported as
 unavailable with a reason.
 
 ## Step 1 — Normalize provider usage
@@ -15,14 +15,15 @@ differently**: uncached input, cached input reads, cache writes (including Anthr
 
 Two rules prevent the most common double-counting errors:
 
-- **Reasoning tokens are already inside output** for both providers. TokenOps records the detail but
-  never adds it to output or total again.
+- **Reasoning tokens are already inside output** for both providers. TokenReader records the detail
+  but never adds it to output or total again.
 - **Cached input is a detail of the reported input total**, not a separate addition to it.
 
 There is a third rule that is a judgment call rather than a mapping: Anthropic documents total input
 as the sum of uncached input, cache creation, and cache reads, but does not report that sum as a
-total. TokenOps **does not** synthesise it into the total field, because a derived figure sitting in
-a field named "reported total" is exactly the kind of quiet fiction the project is trying to avoid.
+total. TokenReader **does not** synthesise it into the total field, because a derived figure sitting
+in a field named "reported total" is exactly the kind of quiet fiction the project is trying to
+avoid.
 
 Usage is then classified: `complete` when all core fields are valid, `partial` when a usage object
 exists but core values are missing, `missing` when there is no usage object at all, and `invalid`
@@ -45,7 +46,7 @@ Both are visible states in the interface rather than silent fallbacks to a "clos
 historical estimate retains a foreign key to the exact schedule that produced it, so changing prices
 later does not silently rewrite the past.
 
-One consequence worth calling out: OpenAI's verified schedule has no cache-write rate, so TokenOps
+One consequence worth calling out: OpenAI's verified schedule has no cache-write rate, so TokenReader
 cannot invent one. The category simply cannot be billed rather than being defaulted to zero or to a
 neighbouring provider's rate.
 
@@ -57,7 +58,7 @@ component micro-USD  = round-half-up(component USD × 1,000,000)
 total micro-USD      = exact sum of the stored component micro-USD values
 ```
 
-All arithmetic uses decimal types — never floating point. Components are rounded **independently**
+All arithmetic uses decimal types, never floating point. Components are rounded **independently**
 and the total is their exact sum, so the reconciliation shown in the interface adds up precisely
 rather than approximately.
 
@@ -90,9 +91,9 @@ Request `trc_demo_01_…` contributes 1,770 micro-USD:
 | **Total** | | | **1,770** |
 
 Because the status is `complete`, this request contributes to the Support Ticket Demo advisory
-budget. The full evidence — safe metadata, normalized usage, the component breakdown, and the
-schedule provenance including its effective date and the date the source was checked — is reachable
-at `#/requests/trc_demo_01_…`.
+budget. The full evidence, including safe metadata, normalized usage, the component breakdown, and
+the schedule provenance with its effective date and the date the source was checked, is reachable at
+`#/requests/trc_demo_01_…`.
 
 **No prompt or response content appears anywhere in that trace.** Everything above is derived from
 provider-reported usage numbers and a stored rate.

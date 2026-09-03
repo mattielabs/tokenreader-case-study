@@ -10,7 +10,7 @@ model leaderboard, or a vendor that takes control of their production traffic.
 
 ## The problem
 
-The trigger is a vague concern — *"we're spending too many tokens"* — that a provider invoice cannot
+The trigger is a vague concern, *"we're spending too many tokens"*, that a provider invoice cannot
 resolve. An invoice is a monthly total. It cannot tell you:
 
 - **Attribution.** Which application request consumed which tokens?
@@ -23,17 +23,18 @@ requires shipping prompt content to a third party, or shipping it anywhere at al
 
 ## The shape of the answer
 
-TokenOps sits between an application's official provider SDK and the upstream API. It forwards the
-native request unchanged and records content-free operational evidence as it passes through.
+TokenReader sits between an application's official provider SDK and the upstream API. It forwards
+the native request unchanged and records content-free operational evidence as it passes through.
 
 ```text
-official SDK -> local gateway -> deterministic fixture -> native JSON / SSE
+official SDK -> local gateway -> upstream (fixture by default) -> native JSON / SSE
                       |
                       +-> allowlisted metadata -> SQLite -> typed API -> dashboard
 ```
 
-The product's job is to **observe, explain, and help the user decide**. Every consequential action
-stays with the user.
+On Windows the gateway and the dashboard ship together as one desktop application. The product's
+job is to **observe, explain, and help the user decide**. Every consequential action stays with
+the user.
 
 ## Decisions that were locked early
 
@@ -46,12 +47,14 @@ stays with the user.
 | Provider interfaces | **Native, not abstracted** | OpenAI Responses and Anthropic Messages keep their own shapes, including their own SSE protocols |
 | Pricing | **Exact dated schedules** | No runtime price scraping, no prefix or family matching, no nearest-model guessing |
 | Missing data | **Never treated as zero** | An unknown cost is reported as unknown, with a reason |
-| Runtime | **Direct Python and Node** | Docker is optional packaging, not the supported path |
+| Runtime | **Direct Python and Node, packaged for Windows** | Docker is optional packaging, not the supported path. The desktop build bundles its own gateway and needs no system Python or Node |
 | Scope | **Local, single user** | No accounts, roles, SSO, or remote multi-user access |
+| Telemetry | **None** | No usage reporting, no crash upload, no analytics. Licence checks and update checks carry no product data |
+| Commercial model | **Signed offline lifetime licence** | Validated locally, no activation server, no hardware binding, and nothing local is ever locked behind it |
 
 ## Explicit non-goals
 
-The MVP deliberately does **not**:
+TokenReader deliberately does **not**:
 
 - route requests automatically between providers or models;
 - block requests when a budget is reached;
@@ -62,7 +65,8 @@ The MVP deliberately does **not**:
 - proxy every endpoint of either provider API;
 - support images, audio, files, tools, or batch requests;
 - rank models by general intelligence or repeat provider marketing claims;
-- present fixture results as production savings or adoption.
+- present fixture results as production savings or adoption;
+- phone home, for licensing, updates, or anything else.
 
 Several of these are the kind of feature that would make the product look more impressive in a demo.
 They are excluded because each one either takes control away from the user or manufactures a claim
@@ -70,27 +74,30 @@ the evidence cannot support.
 
 ## What the dashboard is organised around
 
-| View | Question it answers |
+| Destination | Question it answers |
 |---|---|
-| Overview | Where does spend stand against the advisory budget, how is it composed, and what needs inspection? |
+| Overview | Where does spend stand against the advisory budget, how is it composed, what changed this week, and what needs inspection? |
 | Requests | How does an aggregate figure trace back to one specific attempt? |
 | Budgets | What advisory limit applies to this project this UTC month? |
 | Optimize | What findings exist, what would Prompt Trim propose, and what did the offline evaluation show? |
-| Models | Which exact model IDs were observed, and where did their rates come from? |
-| Privacy | What is actually implemented, what are the limits, and how do I reset or export? |
+| Model Guide | Which exact model IDs were observed, and where did their rates come from? Task guidance is labelled unavailable rather than invented |
+| Learn | Structure for lessons, with no fabricated lessons and no remote content service |
+| Settings | General options, providers, privacy operations, licence, and updates, with each stateful control appearing exactly once |
 
 Missing values are labelled rather than plotted as zero. Fixture-sourced evidence is labelled as
-synthetic on every screen. The redesigned visual system uses an off-white evidence workspace, a
-compact 64px rail, strong numeric hierarchy, and restrained purple, magenta, teal, amber, and red
-state colours. Instrument Sans carries prose while IBM Plex Mono distinguishes traceable evidence.
-At small widths the rail becomes bottom navigation and evidence groups collapse without hiding
-essential actions. It should read as an engineering instrument, not a marketing surface.
+synthetic on every screen. The visual system is a light and dark token set gated to WCAG AA in both
+themes, a sticky top bar with the seven destinations as a pill strip, a command palette over stored
+metadata only, Hanken Grotesk for prose and Spline Sans Mono for identifiers and numbers. It should
+read as an engineering instrument, not a marketing surface.
 
 ## Status
 
-Week 4 local MVP, verdict **PASS** under the local metadata-only workflow, recorded against source
-commit `4e7aff9c1681a38fb86e1aa1d12905512741cff9`. Public release of the software is blocked pending
-a licence decision.
+TokenReader 0.3.0, an unsigned development build, recorded against source commit
+`1f174203c363e43757010a9af703c04dd7b148b1` on 2026-08-28. The full validation gate passed, and the
+installer passed clean-machine qualification in Windows Sandbox on the same day. External beta is
+blocked on a production signing certificate, production licence and update keys, an update domain,
+and a releases repository, none of which exist yet. Public release of the source is not planned; the
+source is proprietary.
 
 ---
 

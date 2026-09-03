@@ -12,7 +12,7 @@ architecture diagrams under `assets/diagrams/`, and the curated synthetic screen
 
 ## No licence is granted
 
-**No open-source licence has been selected for TokenOps, and none is granted here.**
+**No open-source licence has been selected for TokenReader, and none is granted here.**
 
 Making this case study publicly readable is not a grant of rights. Publishing documentation about a
 project is not the same as releasing the project, and nothing here should be read as an implied
@@ -20,16 +20,18 @@ licence, a promise of future licensing, or permission to reuse the work.
 
 Specifically, no permission is granted to reuse, copy, modify, redistribute, create derivative works
 from, host, publish, or deploy this material, beyond the limited uses allowed by applicable copyright
-law — such as quoting a short excerpt with attribution when discussing or evaluating the project.
+law, such as quoting a short excerpt with attribution when discussing or evaluating the project.
 
 Evaluating this repository as part of a hiring or technical review process is expressly welcome and
 requires no permission.
 
 ## The application source is not covered here
 
-The TokenOps application source code lives in a separate private repository. It is not published,
-not included in this repository, and not licensed for any use. Its licence status remains
-**undecided**, and licence selection is a prerequisite for any future public release of the software.
+The TokenReader application source code lives in a separate private repository. It is not published,
+not included in this repository, and not licensed for any use. The source is proprietary. Licence
+selection for the source is not planned; the commercial product is intended to ship under a signed
+offline application licence, which governs use of packaged software and grants no rights in the
+source or in this documentation. No such licence has been issued.
 
 Nothing in this repository is a deployable build of the application.
 

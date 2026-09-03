@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" width="900" height="430" role="img" aria-labelledby="t1 d1">
-  <title id="t1">TokenOps local request flow</title>
-  <desc id="d1">An application using an official provider SDK sends a native request to the local TokenOps gateway. The gateway forwards it unchanged to a deterministic fixture upstream, which returns native JSON or SSE. Separately, the gateway derives allowlisted metadata, normalizes provider usage, estimates cost from an exact dated schedule, commits to local SQLite, and serves a typed API to the dashboard.</desc>
+  <title id="t1">TokenReader local request flow</title>
+  <desc id="d1">An application using an official provider SDK sends a native request to the local TokenReader gateway. The gateway forwards it unchanged to a deterministic fixture upstream, which returns native JSON or SSE. Separately, the gateway derives allowlisted metadata, normalizes provider usage, estimates cost from an exact dated schedule, commits to local SQLite, and serves a typed API to the dashboard.</desc>
   <style>
     .bg   { fill: #16161a; }
     .card { fill: #1f1f26; stroke: #35353f; stroke-width: 1.25; }
@@ -30,7 +30,7 @@
   <text class="s" x="52" y="102">Official OpenAI / Anthropic SDK</text>
 
   <rect class="accent" x="300" y="52" width="196" height="72" rx="8"/>
-  <text class="h" x="318" y="80">TokenOps gateway</text>
+  <text class="h" x="318" y="80">TokenReader gateway</text>
   <text class="s" x="318" y="102">Loopback bind · zero retries</text>
 
   <rect class="card" x="566" y="52" width="300" height="72" rx="8"/>

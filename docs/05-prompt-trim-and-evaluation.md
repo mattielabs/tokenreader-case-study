@@ -10,7 +10,7 @@ explicitly selects.
 
 Version 1 proposes exactly one kind of edit: removing an exact duplicate unprotected line while
 keeping the first occurrence. That is a deliberately unambitious rule, and the ambition is spent
-elsewhere — on refusing to touch anything it cannot prove is safe.
+elsewhere, on refusing to touch anything it cannot prove is safe.
 
 Protected structures include closed and unclosed Markdown fences, quoted examples, JSON-like blocks,
 XML-like blocks, placeholders and template syntax, negation, numbered steps, direction-sensitive
@@ -27,8 +27,8 @@ calculated cost and schedule reference, protected-type counts, an accepted flag,
 timestamp.
 
 It never contains prompts, diffs, suggestion excerpts, payloads, or quality claims. Prompt text never
-enters logs, the database, findings, exports, URLs, or browser storage. Reset clears the interface
-state.
+enters logs, the database, findings, exports, URLs, backups, diagnostics, or browser storage. Reset
+clears the interface state.
 
 Counts use an approximate whitespace method for the lab and are **labelled approximate**.
 Provider-network token counting is not implemented, and one provider's tokenizer is never presented
@@ -51,10 +51,13 @@ Each ticket declares a stable ID and version, expected change state, protected s
 invariants, allowed rule IDs, a deterministic rubric, a count source, sensitivity, tags, rationale,
 and whether it is live-evaluable.
 
-The corpus has canonical SHA-256 fingerprint
-`872cb97c9522b5e6e7f3ea34635bf61ee3acc2c80468062b45a1ffb08b834892`. That digest is **unkeyed**,
-because the corpus is public — it is an integrity check, unrelated to the keyed HMAC fingerprints
-used for request equality.
+The corpus is `tokenreader-synthetic-tickets-v1` with canonical SHA-256 fingerprint
+`a122f59b91daef64f34631938afcd07bc1a01d1da5e9e7e60e2b4f3c790f4514`. That digest is **unkeyed**,
+because the corpus is public; it is an integrity check, unrelated to the keyed HMAC fingerprints
+used for request equality. The fingerprint changed at the rename because the dataset identifier is
+part of the fingerprinted file. The rename commit touched only that identifier and the runner
+identifier in the corpus; the thirty tickets themselves are unchanged from the first version of this
+case study, which recorded fingerprint `872cb97c…b834892`.
 
 ## The offline runner
 
@@ -66,7 +69,7 @@ structural invariants, stable counts, and explainable rubrics.
 Supported rubric methods: exact normalized value, valid JSON or schema, required labels and facts,
 ordered sequence, numeric equality, set membership, and placeholder preservation.
 
-The checked report contains IDs, counts, rules, pass/fail state, versions, and aggregate evidence —
+The checked report contains IDs, counts, rules, pass/fail state, versions, and aggregate evidence,
 **never prompts, revisions, diffs, or outputs**. Any mandatory failure fails the whole gate, so an
 average cannot hide a safety regression.
 
@@ -74,7 +77,7 @@ average cannot hide a safety regression.
 
 | Metric | Value |
 |---|---|
-| Dataset | `tokenops-synthetic-tickets-v1` |
+| Dataset | `tokenreader-synthetic-tickets-v1` |
 | Tickets | 30 / 30 passed, 0 failed, 0 unavailable |
 | Mandatory failures | 0 |
 | Protected-span checks | 26 / 26 passed |
@@ -105,7 +108,7 @@ Ticket **`syn-017`** is a protected-policy case:
 
 Prompt Trim identified the declared protected structure, proposed no edit, reconstructed the prompt
 deterministically, retained its required fragments, and recorded counts and rubric status. The prompt
-text itself did not enter the report or any persisted record — which is why this page can state the
+text itself did not enter the report or any persisted record, which is why this page can state the
 result precisely without quoting the ticket.
 
 This is the case that most clearly justifies the design: the correct behaviour for verbose legal text
@@ -137,7 +140,7 @@ Live evaluation exists in code and is off by default. Executing it requires **al
 
 Upstream hosts are allowlisted to the official provider endpoints; the client accepts no arbitrary
 remote URL. There are no retries. Reports retain only exact run identity and aggregate rubric
-classifications — retained, regression, improvement, inconclusive, or unavailable.
+classifications: retained, regression, improvement, inconclusive, or unavailable.
 
 A dry-run manifest can be inspected safely and makes no request. During Week 4 the manifest planned
 60 requests across 30 tickets with a conservative maximum of 492,795 micro-USD, beneath the explicit
